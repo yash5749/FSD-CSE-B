@@ -1,14 +1,19 @@
-import React from "react";
+import React from 'react';
 
-const Book = ({ title, price, image, onAddToCart }) => {
+function Book({ image, title, price }) {
+
+  const handleAddToCart = () => {
+    alert(`Added to cart: ${title} — ₹${price}`);
+  };
+
   return (
-    <div className="card">
-        <img src={image} alt={title} width="200" height="200" />
-        <h3>Title: {title}</h3>
-        <h4>Price: ₹{price}</h4>
-        <button onClick={onAddToCart}>Add to cart</button>
+    <div className="book-card">
+      <img src={image} alt={title} className="book-img" />
+      <h2>{title}</h2>
+      <p>Price: ₹{price}</p>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
-    );
-};
+  );
+}
 
 export default Book;

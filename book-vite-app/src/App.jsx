@@ -1,51 +1,44 @@
-import React, { useState } from 'react';
-import Header from './component/Header';
-import Footer from './component/Footer';
-import Book from './component/book';
+import './App.css'
+import Book from './components/Book'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
-const App = () => {
-  const [cart, setCart] = useState([]);
+function App() {
 
-  const books = [
-    { id: 1, title: 'Physics', price: 671, image: 'https://via.placeholder.com/200' },
-    { id: 2, title: 'Chemistry', price: 550, image: 'https://via.placeholder.com/200' },
-    { id: 3, title: 'Mathematics', price: 450, image: 'https://via.placeholder.com/200' },
-    { id: 4, title: 'Biology', price: 600, image: 'https://via.placeholder.com/200' },
+  const data = [
+    {
+      image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRi4pZByGZrOvsmvj1gx2Lsbs2h955xyPecO0sIDcF7l7O3wD8gcbkx5PVKxydNhXKqmq0mqngrqZTJnqHXbGn2cxzYipWQ7ylUS-rHzMY",
+      title: "Physics",
+      price: 500
+    },
+    {
+      image: "https://digital.brotherseducation.in/admin/img/book_pages/1712566909-Chemistry%20-%207.jpg",
+      title: "Chemistry",
+      price: 600
+    },
+    {
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyX-rxbPCB7vVQx50Wccpslc_nJlgy8V4W5Q&s",
+      title: "Maths",
+      price: 1000
+    }
   ];
 
-  const addToCart = (book) => {
-    setCart([...cart, book]);
-  };
-
   return (
-    <div>
+    <>
       <Header />
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {books.map(book => (
+      <div className="booklist">
+        {data.map((book, index) => (
           <Book
-            key={book.id}
+            key={index}
+            image={book.image}
             title={book.title}
             price={book.price}
-            image={book.image}
-            onAddToCart={() => addToCart(book)}
           />
         ))}
       </div>
-      <div className="cart">
-        <h2>Cart</h2>
-        {cart.length === 0 ? (
-          <p>No items in cart</p>
-        ) : (
-          <ul>
-            {cart.map((item, index) => (
-              <li key={index}>{item.title} - ₹{item.price}</li>
-            ))}
-          </ul>
-        )}
-      </div>
       <Footer />
-    </div>
-  );
-};
+    </>
+  )
+}
 
 export default App;
